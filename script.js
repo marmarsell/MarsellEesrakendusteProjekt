@@ -1,3 +1,10 @@
+
+// TEHISINTELLEKTI KASUTATUD > EI OLE < ÜLDSE!!!
+// seda peab vist välja tooma eraldi, kuna mulle punkte oli maha võetud niisama
+
+// ÜLESANNE TEGEMISEL KASUTASIN SÕNADEMÄNGU TUNDIÜLESANDED REFERENSIKS
+// AEG AJALT VAATASIN W3 SCHOOLS (https://https://www.w3schools.com/)
+
 console.warn("ERROR:100\nSCRIPT_IS_IN_FACT_ACTIVE_OWO");
 
 let allBooks = [];
@@ -28,36 +35,94 @@ function ClickAddBook() {
 }
 
 function ListBooks() {
+
     $("#booklist").html("");
+    $("#deprecatedBooklist").html("");
+
     for(let i = 0; i < allBooks.length; i++) {
+
+        let visualID = i;
+        if(i < 10) {
+            visualID = "0" + i;
+        }
+
+        if(allBooks[i].bookRead == false) {
+
+            $("#booklist").append(
+                "<div class='readout'>" +
             
-        $("#booklist").append(
-            "<div class='readout'>" +
+                    // Raamatu nimi
+                    "<div style='width:20vw'>"
+                        + allBooks[i].bookName + 
+                    "</div>" + 
+
+                    // Raamatu leheküljejärelhoidjanumbri vahetaja
+                    "<div>"
+                        + "PG: <input type='number' id='bookmarker" 
+                            + i + 
+                        "' value='" 
+                            + allBooks[i].bookMark + 
+                        "' onchange='SavePageEdits(" 
+                            + i + 
+                        ")' />" +
+                    "</div>" +
+
+                    // Loetud raamatute toggle
+                    "<button onclick='BookReadToggleDeprecate(" 
+                        + i + 
+                    ")'> ▼ </button>" +
+
+                    // DELETUS
+                    "<div>&nbsp&nbsp</div>" +
+
+                    // ID näidik, raamatute eraldamise jaoks
+                    "<div>" 
+                        + "ID: " + visualID + 
+                    "</div>" +
+
+                "</div><hr/>" 
+            );
+        }
+        else {
+            $("#deprecatedBooklist").append(
+                "<div class='readout'>" +
             
-                "<div style='width:20vw'>"
-                    + allBooks[i].bookName + 
-                "</div>" + 
+                    // Raamatu nimi
+                    "<div style='width:20vw'>"
+                        + allBooks[i].bookName + 
+                    "</div>" + 
 
-                "<div>"
-                    + "PG: <input type='number' id='bookmarker" 
+                    // Raamatu leheküljejärelhoidjanumbri vahetaja
+                    "<div>"
+                        + "PG: <input type='number' id='bookmarker" 
+                            + i + 
+                        "' value='" 
+                            + allBooks[i].bookMark + 
+                        "' onchange='SavePageEdits(" 
+                            + i + 
+                        ")' />" +
+                    "</div>" +
+
+                    // Loetud raamatute toggle
+                    "<button onclick='BookReadToggleRevive(" 
                         + i + 
-                    "' value='" 
-                        + allBooks[i].bookMark + 
-                    "' onchange='SavePageEdits(" 
+                    ")'> ▲ </button>" +
+
+                    // DELETUS
+                    "<button onclick='RmBook(" 
                         + i + 
-                    ")' />" +
-                "</div>" +
+                    ")'> ⚠ </button>" +
 
-                "<button onclick='RmBook(" 
-                    + i + 
-                ")'> X </button>" +
+                    // ID näidik, raamatute eraldamise jaoks
+                    "<div>" 
+                        + "ID: " + visualID + 
+                    "</div>" +
 
-                "<div>" 
-                    + "ID: " + i + 
-                "</div>" +
-
-            "</div><hr/>" 
-        );
+                "</div><hr/>" 
+            );
+        }
+            
+        
 
     }
 }
@@ -72,10 +137,26 @@ function RmBook(entry) {
 
 function SavePageEdits(entry) {
     console.log("TRIGGERED_PAGE_EDIT_BY_ID: " + entry);
+
     allBooks[entry].bookMark = document.getElementById("bookmarker" + entry).value;
     localStorage.setItem("book", JSON.stringify(allBooks));
     loadFromDatabase();
+}
 
+function BookReadToggleDeprecate(entry) {
+    console.log("TRIGGERED_DEPRECATE_BY_ID: " + entry)
+
+    allBooks[entry].bookRead = true;
+    localStorage.setItem("book", JSON.stringify(allBooks));
+    loadFromDatabase();
+}
+
+function BookReadToggleRevive(entry) {
+    console.log("TRIGGERED_REVIVE_BY_ID: " + entry)
+
+    allBooks[entry].bookRead = false;
+    localStorage.setItem("book", JSON.stringify(allBooks));
+    loadFromDatabase();
 }
 
 loadFromDatabase();

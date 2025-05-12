@@ -1,17 +1,20 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: lightgrey;
-    font-family: Audiowide;
+    background-color: rgb(211, 211, 211);
+    font-family: KodeMono;
+    background-image: url("./BackgroundGridThinLight.png");
+    background-repeat:repeat;
+    background-position-x: center;
 }
 
 @font-face {
-    font-family: audiowide;
-    src: url(Audiowide-Regular.ttf);
+    font-family: KodeMono;
+    src: url(KodeMono-VariableFont_wght.ttf);
 }
 
-.audiowide {
-    font-family: Audiowide;
+.KodeMono {
+    font-family: KodeMono;
 }
 
 .readout {
@@ -19,58 +22,36 @@ body {
     justify-content: space-around;
 }
 
-#container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 60vh;
-    background-color: white;
-    padding-top: 15px;
-}
-
-#infoContainer {
+#headerContainer {
     padding: 1vw;
-    width: 100vw;
-    font-size: 32px;
-    color: white;
+    width: 98vw;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
     background-color: orangered;
 }
 
-.wrong-button {
-    background-color: red !important;
+#deprecatedContainer {
+    padding: 1vw;
+    width: 98vw;
+    font-size: 24px;
+    color: rgb(128, 128, 128);
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(234, 234, 234)
 }
 
-.right-button {
-    background-color: lightgreen !important;
-}
-
-.right-word {
-    background-color: green !important;
-}
 
 #booklist {
     width: 100vw;
     font-size: 20px;
-    background-color: grey;
-    /*display: flex;
-    justify-content: space-around;
-    align-items:stretch;
-    flex-direction: column;*/
+    background-color: rgb(128, 128, 128);
 }
 
-#resultButtons {
-    display: flex;
-    justify-content: space-around;
-}
-
-#wordDiv {
-    font-size: 50px;
-}
-
-#score {
-    display: none;
-    font-size: 60px;
+#deprecatedBooklist {
+    width: 100vw;
+    font-size: 20px;
+    background-color: rgb(200, 200, 200);
+    color: rgb(50, 50, 50);
 }

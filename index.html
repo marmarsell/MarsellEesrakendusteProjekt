@@ -9,11 +9,13 @@
         crossorigin="anonymous"></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <title>Raamatukogu Projekt</title>
 </head>
 <body>
     <br>
-    <div id="infoContainer">
+    <hr/>
+    <div id="headerContainer">
         <div>[</div>
         <div>My Bookshelf</div>
         <div>]</div>
@@ -21,9 +23,27 @@
         <div><button id="add-book" onclick="ClickAddBook()">Add Book</button></div>
         <div><input type="text" placeholder="book name" id="book-name-field"></div>
     </div>
+
     <hr style="margin: 0;"/>
+
     <div id="booklist">
-        Books go here
+        ERROR:400 / FAILED_TO_LOAD_DATA &gtW&lt
+    </div>
+
+    <hr/>
+
+    <div id="deprecatedContainer">
+        <div>[</div>
+        <div>⇑ in progress</div>
+        <div>|</div>
+        <div>deprecated ⇓</div>
+        <div>] </div>
+    </div>
+
+    <hr style="margin: 0;"/>
+
+    <div id="deprecatedBooklist">
+        ERROR:400 / FAILED_TO_LOAD_DATA &gtW&lt
     </div>
 </body>
 </html>
