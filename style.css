@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: gray;
+    background-color: lightgrey;
     font-family: Audiowide;
 }
 
@@ -30,8 +30,10 @@ body {
 }
 
 #infoContainer {
+    padding: 1vw;
     width: 100vw;
     font-size: 32px;
+    color: white;
     display: flex;
     justify-content: space-between;
     background-color: orangered;
@@ -52,6 +54,7 @@ body {
 #booklist {
     width: 100vw;
     font-size: 20px;
+    background-color: grey;
     /*display: flex;
     justify-content: space-around;
     align-items:stretch;
