@@ -4,34 +4,73 @@
 
 // ÜLESANNE TEGEMISEL KASUTASIN SÕNADEMÄNGU TUNDIÜLESANDED REFERENSIKS
 // AEG AJALT VAATASIN W3 SCHOOLS (https://https://www.w3schools.com/)
+// KORRA PIILUSIN ONE COMPILERI PEALE (https://onecompiler.com/)
 
 console.warn("ERROR:100\nSCRIPT_IS_IN_FACT_ACTIVE_OWO");
 
 let allBooks = [];
 
+let specialGlyphs = /[`!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?~]/;
+
 function loadFromDatabase() {
+
     allBooks = JSON.parse(localStorage.getItem("book"));
     if(allBooks == null) {
         allBooks = [];
     }
     console.log(allBooks);
     ListBooks();
+
 }
 
 function ClickAddBook() {
+
     console.log("TRIGGERED_BUTTON_ADD_BOOK");
     
     let fieldName = document.getElementById("book-name-field").value;
 
-    let newBook = {
-        bookName: fieldName,
-        bookMark: 0,
-        bookRead: false
-    }
+    if(
+        fieldName == null || 
+        fieldName == undefined ||
+        fieldName == "" ||
+        fieldName == " " ||
+        fieldName == "  " ||
+        fieldName == "   " ||
+        fieldName == "    " ||
+        fieldName == "     " ||
+        fieldName == "      " ||
+        fieldName == "       " ||
+        fieldName == "        " ||
+        fieldName == "         " ||
+        fieldName == "          "
+    ) {
+        
+        alert(":(\nEnter the name of a book first!");
+    
+    } 
+    else if(fieldName.length >= 50) {
 
-    allBooks.push(newBook);
-    localStorage.setItem("book", JSON.stringify(allBooks));
-    loadFromDatabase();
+        alert(":(\nName cannot be longer than 50 glyphs!");
+
+    }
+    else if(specialGlyphs.test(fieldName) == true) {
+
+        alert(":(\nName cannot contain special glyphs!");
+        
+    }
+    else {
+
+        let newBook = {
+            bookName: fieldName,
+            bookMark: 0,
+            bookRead: false
+        }
+
+        allBooks.push(newBook);
+        localStorage.setItem("book", JSON.stringify(allBooks));
+        loadFromDatabase();
+
+    }
 }
 
 function ListBooks() {
@@ -84,6 +123,7 @@ function ListBooks() {
             );
         }
         else {
+
             $("#deprecatedBooklist").append(
                 "<div class='readout'>" +
             
@@ -121,42 +161,49 @@ function ListBooks() {
                 "</div><hr/>" 
             );
         }
-            
-        
-
     }
 }
 
+// Nuppude funktsioonid
 function RmBook(entry) {
+
     console.log("TRIGGERED_BUTTON_REMOVE_BOOK_ID: " + entry);
 
     allBooks.splice(entry, 1);
     localStorage.setItem("book", JSON.stringify(allBooks));
     loadFromDatabase();
+
 }
 
 function SavePageEdits(entry) {
+
     console.log("TRIGGERED_PAGE_EDIT_BY_ID: " + entry);
 
     allBooks[entry].bookMark = document.getElementById("bookmarker" + entry).value;
     localStorage.setItem("book", JSON.stringify(allBooks));
     loadFromDatabase();
+
 }
 
 function BookReadToggleDeprecate(entry) {
+
     console.log("TRIGGERED_DEPRECATE_BY_ID: " + entry)
 
     allBooks[entry].bookRead = true;
     localStorage.setItem("book", JSON.stringify(allBooks));
     loadFromDatabase();
+
 }
 
 function BookReadToggleRevive(entry) {
+
     console.log("TRIGGERED_REVIVE_BY_ID: " + entry)
 
     allBooks[entry].bookRead = false;
     localStorage.setItem("book", JSON.stringify(allBooks));
     loadFromDatabase();
+
 }
 
+// Programmi initsiaalse oleku initsieerimine
 loadFromDatabase();

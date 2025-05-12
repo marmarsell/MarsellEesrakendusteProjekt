@@ -45,13 +45,13 @@ body {
 
 #booklist {
     width: 100vw;
-    font-size: 20px;
+    font-size: 15px;
     background-color: rgb(128, 128, 128);
 }
 
 #deprecatedBooklist {
     width: 100vw;
-    font-size: 20px;
+    font-size: 15px;
     background-color: rgb(200, 200, 200);
     color: rgb(50, 50, 50);
 }
