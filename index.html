@@ -7,12 +7,16 @@
         src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Raamatukogu Projekt</title>
 </head>
 <body>
     <div>
-        <button id="add-book">Lisa Uus raamat</button>
+        <button id="add-book" onclick="ClickAddBook()">Lisa Uus raamat</button>
+    </div>
+    <div id="booklist">
+        Books go here
     </div>
 </body>
 </html>
